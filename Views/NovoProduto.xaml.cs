@@ -1,0 +1,58 @@
+using MauiAppMinhasCompras.Models;
+using System;
+
+namespace MauiAppMinhasCompras.Views
+{
+    public partial class NovoProduto : ContentPage
+    {
+        public NovoProduto()
+        {
+            InitializeComponent();
+        }
+
+        private async void Salvar_Clicked(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txt_descricao.Text))
+            {
+                await DisplayAlertAsync(
+                    "Atenção",
+                    "Digite a descrição do produto.",
+                    "OK"
+                );
+
+                return;
+            }
+
+            if (!double.TryParse(txt_quantidade.Text, out double quantidade) ||
+                !double.TryParse(txt_preco.Text, out double preco))
+            {
+                await DisplayAlertAsync(
+                    "Atenção",
+                    "Digite números válidos na quantidade e no preço.",
+                    "OK"
+                );
+
+                return;
+            }
+
+            Produto produto = new Produto
+            {
+                Descricao = txt_descricao.Text.Trim(),
+                Quantidade = quantidade,
+                Preco = preco
+            };
+
+            await App.Db.Insert(produto);
+
+            await DisplayAlertAsync(
+                "Produto salvo",
+                "O produto foi cadastrado com sucesso.",
+                "OK"
+            );
+
+            txt_descricao.Text = string.Empty;
+            txt_quantidade.Text = string.Empty;
+            txt_preco.Text = string.Empty;
+        }
+    }
+}
