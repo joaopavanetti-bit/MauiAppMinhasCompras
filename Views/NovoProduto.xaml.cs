@@ -1,5 +1,4 @@
 using MauiAppMinhasCompras.Models;
-using System;
 
 namespace MauiAppMinhasCompras.Views
 {
@@ -50,9 +49,7 @@ namespace MauiAppMinhasCompras.Views
                 "OK"
             );
 
-            txt_descricao.Text = string.Empty;
-            txt_quantidade.Text = string.Empty;
-            txt_preco.Text = string.Empty;
+            await Navigation.PopAsync();
         }
     }
 }

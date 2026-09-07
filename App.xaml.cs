@@ -1,6 +1,4 @@
 ﻿using MauiAppMinhasCompras.Helpers;
-using System;
-using System.IO;
 
 namespace MauiAppMinhasCompras
 {
@@ -33,10 +31,10 @@ namespace MauiAppMinhasCompras
         }
 
         protected override Window CreateWindow(
-           IActivationState? activationState)
+            IActivationState? activationState)
         {
             return new Window(
-                new NavigationPage(new Views.NovoProduto())
+                new NavigationPage(new Views.ListaProduto())
             );
         }
     }
